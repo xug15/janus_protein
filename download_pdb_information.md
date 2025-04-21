@@ -44,6 +44,20 @@ status_query.csv/seq | 待发布结构，可能含功能、序列等补充注释
 
 ### 3.1 compound.idx
 
+```txt
+PROTEIN DATA BANK LIST OF IDCODE AND COMPOUND NAMES AS FOUND IN THE COMPOUND RECORDS
+Fri Apr 11 10:58:43 EDT 2025
+IDCODE  COMPOUND
+------  -------------------------------------------------------------------------
+7RWG    ""Crystal structure of human methionine adenosyltransferase 2A (MAT2A) in complex with SAM and allosteric inhibitor AGI-43192
+9DVJ    ""Structure of the phosphate exporter XPR1/SLC53A1
+2QPS    ""Sugar tongs"" mutant Y380A in complex with acarbose
+6F4G    'Crystal structure of the Drosophila melanogaster SNF/U2A'/U2-SL4 complex
+7W7V    'late' E2P of SERCA2b
+5NQ2    'Porcine (Sus scrofa) Major Histocompatibility Complex, class I, presenting IAYERMCNI
+
+```
+
 PROTEIN DATA BANK LIST OF IDCODE AND COMPOUND NAMES AS FOUND IN THE COMPOUND RECORDS
 Fri Apr 11 10:58:43 EDT 2025
 IDCODE |  COMPOUND
@@ -53,6 +67,7 @@ IDCODE |  COMPOUND
 2QPS  |  ""Sugar tongs"" mutant Y380A in complex with acarbose
 
 这段是来自 PDB（Protein Data Bank） 的 compound.idx 文件的一部分，用于记录每个结构条目（PDB ID）对应的复合物名称（Compound）或结构标题，它反映了结构研究的对象和功能背景。
+
 
 列名 | 含义
 --|--
@@ -75,6 +90,19 @@ COMPOUND | 对该结构的文字说明，通常是该蛋白结构、复合物、
 说明：Y380A 是一种定点突变，研究其与阿卡波糖（一种α-葡萄糖苷酶抑制剂）结合方式。
 
 ### 3.2 cmpd_res.idx
+
+```txt
+PROTEIN DATA BANK LIST OF IDCODE, RESOLUTION, AND COMPOUND NAMES
+Fri Apr 11 10:58:47 EDT 2025
+IDCODE       RESOLUTION         COMPOUND
+------  -    ---------- -       --------------------------------------
+7RWG    ;       0.97    ;       ""Crystal structure of human methionine adenosyltransferase 2A (MAT2A) in complex with SAM and allosteric inhibitor AGI-43192
+9DVJ    ;       2.52    ;       ""Structure of the phosphate exporter XPR1/SLC53A1
+2QPS    ;       2.2     ;       ""Sugar tongs"" mutant Y380A in complex with acarbose
+6F4G    ;       1.9     ;       'Crystal structure of the Drosophila melanogaster SNF/U2A'/U2-SL4 complex
+7W7V    ;       3.0     ;       'late' E2P of SERCA2b
+5NQ2    ;       1.54    ;       'Porcine (Sus scrofa) Major Histocompatibility Complex, class I, presenting IAYERMCNI
+```
 
 PROTEIN DATA BANK LIST OF IDCODE, RESOLUTION, AND COMPOUND NAMES
 Fri Apr 11 10:58:47 EDT 2025
@@ -138,6 +166,18 @@ COMPOUND | "Crystal structure of..." | 对该结构的简要描述，包括研�
 中文：猪 MHC-I（主要组织相容性复合物 I 类）呈递 IAYERMCNI 肽段的结构
 
 ### 3.3 crystal.idx
+```txt
+PROTEIN DATA BANK LIST OF CRYSTAL UNIT CELL PARAMETERS
+Fri Apr 11 10:58:54 EDT 2025
+idcode              a         b         c       alpha     beta     gamma    sp.gp.       Z
+------  ------    -----     -----     -----     -----     -----    -----    ------       -
+100D    CRYST1    23.980    40.770    44.840    90.000    90.000    90.000  P 21 21 21   8
+101D    CRYST1    24.270    39.620    63.570    90.000    90.000    90.000  P 21 21 21   8
+101M    CRYST1    91.670    91.670    45.970    90.000    90.000   120.000  P 6          6
+102D    CRYST1    24.780    41.160    65.510    90.000    90.000    90.000  P 21 21 21   8
+102L    CRYST1    60.900    60.900    96.100    90.000    90.000   120.000  P 32 2 1     6
+102M    CRYST1    91.433    91.433    45.949    90.000    90.000   120.000  P 6          6
+```
 crystal.idx | 晶体学单位胞参数、空间群
 这段内容是 PDB 中晶体学信息文件的一部分，通常称作 crystal.idx 或 unit_cell_parameters.idx，记录的是：
 
@@ -167,6 +207,18 @@ idcode | x  |    a   |      b  |       c   |    alpha  |   beta   |  gamma  |  s
 Z = 8 → 晶胞中有 8 个不对称单元
 
 ### 3.4 entries.idx 
+```txt
+IDCODE, HEADER, ACCESSION DATE, COMPOUND, SOURCE, AUTHOR LIST, RESOLUTION, EXPERIMENT TYPE (IF NOT X-RAY)
+------- ------- --------------- --------- ------- ------------ ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+100D    DNA-RNA HYBRID  12/05/94        CRYSTAL STRUCTURE OF THE HIGHLY DISTORTED CHIMERIC DECAMER R(C)D(CGGCGCCG)R(G)-SPERMINE COMPLEX-SPERMINE BINDING TO PHOSPHATE ONLY AND MINOR GROOVE TERTIARY BASE-PAIRING               Ban, C., Ramakrishnan, B., Sundaralingam, M.    1.9     X-RAY DIFFRACTION
+101D    DNA     12/14/94        REFINEMENT OF NETROPSIN BOUND TO DNA: BIAS AND FEEDBACK IN ELECTRON DENSITY MAP INTERPRETATION          Goodsell, D.S., Kopka, M.L., Dickerson, R.E.    2.25    X-RAY DIFFRACTION
+101M    OXYGEN TRANSPORT        12/13/97        SPERM WHALE MYOGLOBIN F46V N-BUTYL ISOCYANIDE AT PH 9.0 Physeter catodonSmith, R.D., Olson, J.S., Phillips Jr., G.N.    2.07    X-RAY DIFFRACTION
+102D    DNA     12/15/94        SEQUENCE-DEPENDENT DRUG BINDING TO THE MINOR GROOVE OF DNA: THE CRYSTAL STRUCTURE OF THE DNA DODECAMER D(CGCAAATTTGCG)2 COMPLEXED WITH PROPAMIDINE              Nunn, C.M., Neidle, S.  2.2     X-RAY DIFFRACTION
+102L    HYDROLASE(O-GLYCOSYL)   09/29/92        HOW AMINO-ACID INSERTIONS ARE ALLOWED IN AN ALPHA-HELIX OF T4 LYSOZYME Enterobacteria phage T4  Heinz, D.W., Matthews, B.W.     1.74    X-RAY DIFFRACTION
+102M    OXYGEN TRANSPORT        12/15/97        SPERM WHALE MYOGLOBIN H64A AQUOMET AT PH 9.0    Physeter catodon       Smith, R.D., Olson, J.S., Phillips Jr., G.N.     1.84    X-RAY DIFFRACTION
+103D    DNA     12/16/94        THE UNUSUAL STRUCTURE OF THE HUMAN CENTROMERE (GGA)2 MOTIF: UNPAIRED GUANOSINE RESIDUES STACKED BETWEEN SHEARED G(DOT)A PAIRS           Chou, S.-H., Zhu, L., Reid, B.R.        NOT     SOLUTION NMR
+103L    HYDROLASE(O-GLYCOSYL)   09/29/92        HOW AMINO-ACID INSERTIONS ARE ALLOWED IN AN ALPHA-HELIX OF T4 LYSOZYME Enterobacteria phage T4  Heinz, D.W., Matthews, B.W.     1.9     X-RAY DIFFRACTION
+```
 | 最全的信息，含 PDB ID、标题、作者、解析度、实验方法等
 编号、标题、提交日期、复合物名称、来源、作者、分辨率、实验类型等。
 
@@ -191,6 +243,18 @@ ID | 101M
 方法 | X-RAY DIFFRACTION
 
 ### 3.5 resolu.idx 
+```txt
+PROTEIN DATA BANK LIST OF IDCODES AND DATA RESOLUTION VALUES
+Fri Apr 11 10:59:11 EDT 2025
+RESOLUTION VALUE IS -1.00 FOR ENTRIES DERIVED FROM NMR AND OTHER EXPERIMENT METHODS (NOT INCLUDING X-RAY) IN WHICH THE FIELD REFINE.LS_D_RES_HIGH IS EMPTY
+
+IDCODE       RESOLUTION
+------  -    ----------
+100D    ;       1.9
+101D    ;       2.25
+101M    ;       2.07
+102D    ;       2.2
+```
 | PDB ID 与解析度（补充精确数据）
 💡 PDB ID 与结构解析度的对应表
 
@@ -223,6 +287,18 @@ PDB ID | Resolution (Å) | 说明
 ### 3.6 source.idx 
 | 生物来源信息
 
+```txt
+PROTEIN DATA BANK LIST OF IDCODE AND SOURCE NAMES AS FOUND IN THE COMPOUND RECORDS
+Fri Apr 11 10:56:35 EDT 2025
+IDCODE  SOURCE
+------  -----------------------------------------------------------------
+100D
+101D
+101M    Physeter catodon
+102D
+102L    Enterobacteria phage T4
+102M    Physeter catodon
+```
 PROTEIN DATA BANK LIST OF IDCODE AND SOURCE NAMES AS FOUND IN THE COMPOUND RECORDS
 Fri Apr 11 10:56:35 EDT 2025
 
@@ -239,6 +315,18 @@ IDCODE | SOURCE
 
 ### 3.7 pdb_seqres.txt 
 | 含有序列信息（FASTA 格式），用于提取蛋白序列
+```txt
+>100d_A mol:na length:10  DNA/RNA (5'-R(*CP*)-D(*CP*GP*GP*CP*GP*CP*CP*GP*)-R(*G)-3')
+CCGGCGCCGG
+>100d_B mol:na length:10  DNA/RNA (5'-R(*CP*)-D(*CP*GP*GP*CP*GP*CP*CP*GP*)-R(*G)-3')
+CCGGCGCCGG
+>101d_A mol:na length:12  DNA (5'-D(*CP*GP*CP*GP*AP*AP*TP*TP*(CBR)P*GP*CP*G)-3')
+CGCGAATTCGCG
+>101d_B mol:na length:12  DNA (5'-D(*CP*GP*CP*GP*AP*AP*TP*TP*(CBR)P*GP*CP*G)-3')
+CGCGAATTCGCG
+>101m_A mol:protein length:154  MYOGLOBIN
+MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRVKHLKTEAEMKASEDLKKHGVTVLTALGAILKKKGHHEAELKPLAQSHATKHKIPIKYLEFISEAIIHVLHSRHPGNFGADAQGAMNKALELFRKDIAAKYKELGYQG
+```
 ```sh
 (base) dell@dell-PowerEdge-R750xa:~/model/data/b1.pdbs/pdb_information$ head -n 20 pdb_seqres.txt
 ```
@@ -264,8 +352,20 @@ MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRFKHLKTEAEMKASEDLKKAGVTVLTALGAILKKK
 >103d_A mol:na length:12  DNA (5'-D(*GP*TP*GP*GP*AP*AP*TP*GP*GP*AP*AP*C)-3')
 GTGGAATGGAAC
 ```
-### 3.8 status_query.csv/seq 
+### 3.8 status_query.csv
 | 待发布结构，可能含功能、序列等补充注释
+```txt
+'Structure_ID','pdb_id','status_code','initial_deposition_date','date_hold_coordinates','date_struct_fact','date_hold_struct_fact','date_nmr_constraints','date_hold_nmr_constraints','date_of_RCSB_release','author_list','title','author_release_sequence'
+'PDB2CX2','2CX2','WDRN','1998-04-24','n/a','n/a','n/a','n/a','n/a','n/a','McKeever, B.M., Pandya, S.R., Percival, M.D., Ouellet, M., Bayly, C., O''Neill, G.P., Bastien, L., Kennedy, B.P., Adam, M., Cromlish, W., Roy, P., Black, W.C., Guay, D., Leblanc, Y.','CYCLOOXYGENASE-2 (PROSTAGLANDIN SYNTHASE-2) COMPLEXED WITH A BENZYL-INDOLE INHIBITOR, L-758048','n/a'
+'PDB1BJS','1BJS','WDRN','1998-06-29','n/a','n/a','n/a','n/a','n/a','n/a','Liang, J., Kongsaeree, P., Guo, W., Clardy, J.','CRYSTAL STRUCTURE OF CYCLOHEXADIENYL DEHYDRATASE','n/a'
+'PDB2DIH','2DIH','WDRN','1998-08-25','n/a','n/a','n/a','n/a','n/a','n/a','Scapin, G., Zheng, R., Blanchard, J.S.','M. TUBERCULOSIS DIHYDRODIPICOLINATE REDUCTASE IN COMPLEX WITH NADH AND THE INHIBITOR 2,6 PYRIDINE DICARBOXYLATE','n/a'
+'PDB2NP4','2NP4','WDRN','1998-09-14','n/a','1998-09-14','n/a','n/a','n/a','n/a','Weichsel, A., Andersen, J.F., Roberts, S.A., Montfort, W.R.','CRYSTAL STRUCTURE OF NITROPHORIN 4 FROM RHODNIUS PROLIXUS','n/a'
+'PDB2ERU','2ERU','WDRN','1998-10-21','n/a','n/a','n/a','n/a','n/a','n/a','Sotelo-Mundo, R.R., Montfort, W.R.','HUMAN THIOREDOXIN (OXIDIZED FORM)','n/a'
+'PDB1B2Q','1B2Q','WDRN','1998-12-02','n/a','1998-12-02','n/a','n/a','n/a','n/a','Silvian, L.F., Wang, J., Steitz, T.A.','ISOLEUCINYL TRNA SYNTHETASE/TRNA COMPLEX','n/a'
+'PDB450D','450D','WDRN','1999-01-20','n/a','1999-01-20','n/a','n/a','n/a','n/a','Clark, G.R., Squire, C.J., Martin, R.F., White, J., Kelly, D., Reum, M., Sy, D., Sptheim- Maurizot, M.','5''-D(*CP*GP*CP*GP*AP*AP*TP*TP*CP*GP*CP*G)-3''','n/a'
+'PDB451D','451D','WDRN','1999-01-20','n/a','1999-01-20','n/a','n/a','n/a','n/a','Clark, G.R., Squire, C.J., Martin, R.F., White, J., Kelly, D., Reum, M., Sy, D., Sptheim- Maurizot, M.','5''-D(*CP*GP*CP*GP*AP*AP*TP*TP*CP*GP*CP*G)-3''','n/a'
+'PDB1B7W','1B7W','WDRN','1999-01-26','n/a','n/a','n/a','n/a','n/a','n/a','Ha, Y., Shi, D., Allewell, N.M.','CRYSTAL STRUCTURE OF M FERRITIN','n/a'
+```
 ```sh
 (base) dell@dell-PowerEdge-R750xa:~/model/data/b1.pdbs/pdb_information$ head status_query.csv
 ```
@@ -302,6 +402,18 @@ title | 该结构是：环氧合酶-2（COX-2）与一种苄基吲哚类抑制�
 author_list | 多位作者
 
 ### 3.9 status_query.seq  
+```txt
+>8G7Z Entity 1
+MALPRCMWPNYVWRAMMACVVHRGSGAPLTLCLLGCLLQTFHVLSQKYPYDVPDYAQRGGGGPGGGAPGGPGLGLGSLGE
+ERFPVVNTAYGRVRGVRRELNNEILGPVVQFLGVPYATPPLGARRFQPPEAPASWPGVRNATTLPPACPQNLHGALPAIM
+LPVWFTDNLEAAATYVQNQSEDCLYLNLYVPTEDDIRDSGKKPVMLFLHGGSYMEGTGNMFDGSVLAAYGNVIVVTLNYR
+LGVLGFLSTGDQAAKGNYGLLDQIQALRWLSENIAHFGGDPERITIFGSGAGASCVNLLILSHHSEGLFQKAIAQSGTAI
+SSWSVNYQPLKYTRLLAAKVGCDREDSTEAVECLRRKSSRELVDQDVQPARYHIAFGPVVDGDVVPDDPEILMQQGEFLN
+YDMLIGVNQGEGLKFVEDSAESEDGVSASAFDFTVSNFVDNLYGYPEGKDVLRETIKFMYTDWADRDNGEMRRKTLLALF
+TDHQWVAPAVATAKLHADYQSPVYFYTFYHHCQAEGRPEWADAAHGDELPYVFGVPMVGATDLFPCNFSKNDVMLSAVVM
+TYWTNFAKTGDPNQPVPQDTKFIHTKPNRFEEVVWSKFNSKEKQYLHIGLKPRVRDNYRANKVAFWLELVPHLHNLHTEL
+FTTTTRLPPYATRWPPRTPGPGTSGTRRPPPPATLPPESDIDLGPRAYDRFPGDSRDYSTELSVTVAVGASLLFLNILAF
+```
 ```sh
 (base) dell@dell-PowerEdge-R750xa:~/model/data/b1.pdbs/pdb_information$ grep -A 1 ">" status_query.seq |head -n 18
 ``` 
