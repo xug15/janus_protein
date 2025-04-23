@@ -620,35 +620,6 @@ if __name__ == "__main__":
         pool.map(render_pdb, pdb_files)
 
 ```
-## model train
-```sh
-CUDA_VISIBLE_DEVICES=1,2,3 \
-swift sft \
-    --model /home/dell/model/deepseek-janus-pro-7b \
-    --model_type deepseek_janus_pro \
-    --dataset /home/dell/model/data/b5.pdb_all.jsonl/deepseek_janus_training_data.jsonl \
-    --train_type lora \
-    --torch_dtype bfloat16 \
-    --num_train_epochs 5 \
-    --per_device_train_batch_size 1 \
-    --per_device_eval_batch_size 1 \
-    --learning_rate 1e-5 \
-    --lora_rank 8 \
-    --lora_alpha 32 \
-    --target_modules all-linear \
-    --freeze_vit false \
-    --gradient_accumulation_steps 16 \
-    --eval_steps 100 \
-    --save_steps 100 \
-    --save_total_limit 20 \
-    --logging_steps 5 \
-    --max_length 4048 \
-    --output_dir /home/dell/model/train_deepseek_janus_7b_pro \
-    --warmup_ratio 0.05 \
-    --dataloader_num_workers 4 \
-    --dataset_num_proc 4
-```
-
 
 
 ## 5. Generate jsonl fils for janus training
@@ -790,6 +761,35 @@ with open(output_jsonl, "w", encoding="utf-8") as fout:
 
 ```
 
+
+## 6. model train
+```sh
+CUDA_VISIBLE_DEVICES=1,2,3 \
+swift sft \
+    --model /home/dell/model/deepseek-janus-pro-7b \
+    --model_type deepseek_janus_pro \
+    --dataset /home/dell/model/data/b5.pdb_all.jsonl/deepseek_janus_training_data.jsonl \
+    --train_type lora \
+    --torch_dtype bfloat16 \
+    --num_train_epochs 5 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --learning_rate 1e-5 \
+    --lora_rank 8 \
+    --lora_alpha 32 \
+    --target_modules all-linear \
+    --freeze_vit false \
+    --gradient_accumulation_steps 16 \
+    --eval_steps 100 \
+    --save_steps 100 \
+    --save_total_limit 20 \
+    --logging_steps 5 \
+    --max_length 4048 \
+    --output_dir /home/dell/model/train_deepseek_janus_7b_pro \
+    --warmup_ratio 0.05 \
+    --dataloader_num_workers 4 \
+    --dataset_num_proc 4
+```
 
 
 
