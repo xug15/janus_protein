@@ -23,7 +23,14 @@ biochunan/esmfold-image \
 -o /root/output \
 > ./pred-root-devel.log 2>./pred-root-devel.err
 
-
+```
+## run in guida local
+设置4个变量。
+1. 蛋白的fasta
+2. 输出蛋白结构的名字，用于新建并保存结果
+3. 蛋白的路径
+4. 输出蛋白结构的路径
+```sh
 # run bacterial AMPs to predict structure.
 inputfasta='2024_bacterial_AMPs_with_known_activity.fasta'
 outputname='structure_bacterial'
