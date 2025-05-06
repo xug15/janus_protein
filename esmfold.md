@@ -31,7 +31,7 @@ inputpath='/home/dell/model/data/rawdata/AMPs/APD3/'
 outputpath='/home/dell/model/data/rawdata/AMPs/APD3/'
 [[ -d ${outputpath}/${outputname} ]] || mkdir -p ${outputpath}/${outputname}
 
-echo  "docker run --rm --gpus device=0 -v ${inputpath}:/root/input -v ${outputpath}/${outputname}:/root/output biochunan/esmfold-image -i /root/input/${inputfasta} -o /root/output > /root/output/pred-root-devel.log 2>/root/output/pred-root-devel.err "
+echo  "docker run --rm --gpus device=0 -v ${inputpath}:/root/input -v ${outputpath}/${outputname}:/root/output biochunan/esmfold-image -i /root/input/${inputfasta} -o /root/output > ${outputpath}/${outputname}/pred-root-devel.log 2>${outputpath}/${outputname}/pred-root-devel.err "
 
 docker run --rm --gpus device=0 \
 -v ${inputpath}:/root/input \
@@ -39,7 +39,8 @@ docker run --rm --gpus device=0 \
 biochunan/esmfold-image \
 -i /root/input/${inputfasta} \
 -o /root/output \
-> /root/output/pred-root-devel.log 2>/root/output/pred-root-devel.err
+> ${outputpath}/${outputname}/pred-root-devel.log 2>${outputpath}/${outputname}/pred-root-devel.err
+
 
 
 
