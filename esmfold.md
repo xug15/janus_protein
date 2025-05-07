@@ -32,10 +32,32 @@ biochunan/esmfold-image \
 4. 输出蛋白结构的路径
 ```sh
 # run bacterial AMPs to predict structure.
-inputfasta='2024_bacterial_AMPs_with_known_activity.fasta'
+
+inputfasta='2024_amphibian_AMPs_with_known_activity.fasta'
+outputname='structure_amphibian'
+
+inputfasta='2024_bacterial_AMPs_with_known_activity.fasta'  
 outputname='structure_bacterial'
+
+inputfasta='2024_plant_AMPs_with_known_activity.fasta'
+outputname='structure_plant'
+
+inputfasta='2024_animal_AMPs_with_known_activity.fasta'
+outputname='structure_animal'
+
+inputfasta='2024_human_AMPs_with_known_activity.fasta'  
+outputname='structure_human'
+
+inputfasta='2024_insect_AMPs_with_known_activity.fasta' 
+outputname='structure_insect'
+
+inputfasta='2024_natural_AMPs_with_known_activity.fasta'
+outputname='structure_natural'
+
 inputpath='/home/dell/model/data/rawdata/AMPs/APD3/'
 outputpath='/home/dell/model/data/rawdata/AMPs/APD3/'
+
+
 [[ -d ${outputpath}/${outputname} ]] || mkdir -p ${outputpath}/${outputname}
 
 echo  "docker run --rm --gpus device=0 -v ${inputpath}:/root/input -v ${outputpath}/${outputname}:/root/output biochunan/esmfold-image -i /root/input/${inputfasta} -o /root/output > ${outputpath}/${outputname}/pred-root-devel.log 2>${outputpath}/${outputname}/pred-root-devel.err "
@@ -48,8 +70,61 @@ biochunan/esmfold-image \
 -o /root/output \
 > ${outputpath}/${outputname}/pred-root-devel.log 2>${outputpath}/${outputname}/pred-root-devel.err
 
+```
 
+···sh
+#!/bin/bash
 
+# 输入文件名数组（与 outputname 一一对应）
+input_files=(
+    "2024_amphibian_AMPs_with_known_activity.fasta"
+    "2024_bacterial_AMPs_with_known_activity.fasta"
+    "2024_plant_AMPs_with_known_activity.fasta"
+    "2024_animal_AMPs_with_known_activity.fasta"
+    "2024_human_AMPs_with_known_activity.fasta"
+    "2024_insect_AMPs_with_known_activity.fasta"
+    "2024_natural_AMPs_with_known_activity.fasta"
+)
+
+output_names=(
+    "structure_amphibian"
+    "structure_bacterial"
+    "structure_plant"
+    "structure_animal"
+    "structure_human"
+    "structure_insect"
+    "structure_natural"
+)
+
+# 输入输出路径（通用）
+inputpath='/home/dell/model/data/rawdata/AMPs/APD3'
+outputpath='/home/dell/model/data/rawdata/AMPs/APD3'
+
+# 遍历输入序列
+for i in "${!input_files[@]}"; do
+    inputfasta="${input_files[$i]}"
+    outputname="${output_names[$i]}"
+
+    # 创建输出目录
+    outdir="${outputpath}/${outputname}"
+    [[ -d "$outdir" ]] || mkdir -p "$outdir"
+
+    echo "🚀 预测中: $inputfasta → 输出目录: $outputname"
+
+    # 执行 docker 预测命令
+    docker run --rm --gpus device=0 \
+        -v "${inputpath}:/root/input" \
+        -v "${outdir}:/root/output" \
+        biochunan/esmfold-image \
+        -i "/root/input/${inputfasta}" \
+        -o "/root/output" \
+        > "${outdir}/pred-root-devel.log" \
+        2> "${outdir}/pred-root-devel.err"
+
+    echo "✅ 预测完成: $inputfasta → $outdir"
+done
+
+echo "🎉 所有序列批量预测完成！"
 
 ```
 
