@@ -462,6 +462,9 @@ done
 convert pdb into 6 angle pictures into one image
 ```sh
 conda activate pymol_env 
+#or
+conda activate /home/dell/.conda/envs/pymol_env
+
 ```
 ```py
 import os
@@ -541,6 +544,8 @@ with pymol2.PyMOL() as pymol:
 多进程
 ```sh
 conda activate pymol_env 
+#or
+conda activate /home/dell/.conda/envs/pymol_env
 ```
 ```py
 import os
