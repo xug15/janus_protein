@@ -460,7 +460,9 @@ echo ${folder}
 done
 ```
 convert pdb into 6 angle pictures into one image
-
+```sh
+conda activate pymol_env 
+```
 ```py
 import os
 import glob
@@ -537,6 +539,9 @@ with pymol2.PyMOL() as pymol:
 
 ```
 多进程
+```sh
+conda activate pymol_env 
+```
 ```py
 import os
 import glob
@@ -791,10 +796,36 @@ swift sft \
     --dataset_num_proc 4
 ```
 
+output in /home/dell/model/train_deepseek_janus_7b_pro/v9-20250416-120003
 
+### Load the trained model.
 
+```sh
+CUDA_VISIBLE_DEVICES=2 \
+swift infer \
+    --adapters /home/dell/model/train_deepseek_janus_7b_pro/v16-20250416-160133/checkpoint-270 \
+    --stream false \
+    --max_batch_size 1 \
+    --load_data_args true \
+    --max_new_tokens 2048 \
+   --val_dataset test.jsonl \
+   --result_path test.result.jsonl
+```
+### 
 
+```sh
+CUDA_VISIBLE_DEVICES=2 \
+swift infer \
+    --model /home/dell/model/deepseek-janus-pro-7b \
+    --model_type deepseek_janus_pro \
+    --stream false \
+    --max_batch_size 1 \
+    --load_data_args true \
+    --max_new_tokens 2048 \
+   --val_dataset dataset.jsonl \
+   --result_path result_origin.jsonl
 
+```
 
 
 
