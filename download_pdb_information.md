@@ -667,7 +667,7 @@ MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRVKHLKTEAEMKASEDLKKHGVTVLTALGAILKKK
 "image": "/home/dell/model/data/b3.mergeimages/{id}_merged.png", 
 "instruction": "这个是蛋白的结构从前,后,左,右,上,下,6个角度观察结构的图像,请根据该蛋白结构6个角度的图片,预测该蛋白的整体功能。
 目标蛋白的第{pdb_seqres.txt_id}条肽段，序列为{pdb_seqres.txt_id_A},序列长度为 {length}，类型为{pdb_seqres.txt_id_protein/na}。(可能包括多条链需要分别显示)", 
-"output":"该蛋白结构功能是{entries.id_HEADER},该蛋白结构编号为 {id}. compound 是{entries.id_COMPOUND},来源是{entries.id_SOURCE}"
+"output":"{entries.id_HEADER},{entries.id_COMPOUND},{entries.id_SOURCE}"
 "label":"{entries.id_HEADER}"
 }
 ```
@@ -756,9 +756,9 @@ with open(output_jsonl, "w", encoding="utf-8") as fout:
                 instruction += "\n"
 
         output_text = (
-            f"该蛋白结构功能是 {entries_info[pdb_id]['header']}，"
-            f"该蛋白结构编号为 {pdb_id}。compound 是 {entries_info[pdb_id]['compound']}，"
-            f"来源是 {entries_info[pdb_id]['source']}。"
+            f"{entries_info[pdb_id]['header']}，"
+            f"{entries_info[pdb_id]['compound']}，"
+            f"{entries_info[pdb_id]['source']}。"
         )
 
         json.dump({
