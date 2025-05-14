@@ -681,8 +681,11 @@ MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRVKHLKTEAEMKASEDLKKHGVTVLTALGAILKKK
 ```sh
 conda activate pymol_env
 pip install biopython
-[a6.generate.json](script/a6.generate.jsonl.py)
+
 ```
+
+[a6.generate.json](script/a6.generate.jsonl.py)
+
 ```py
 import os
 import re
