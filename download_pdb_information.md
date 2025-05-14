@@ -1,10 +1,13 @@
 ## 1. Download PDB files from PDB websites.
 
+[a1.download.pdb_structure](script/a1.download.pdb_structure.sh)
 ```sh
 rsync -avz rsync.rcsb.org::ftp/data/structures/divided/pdb/ ./pdb/
 ```
 
 ## 2. Download the PDB protein informations.
+
+[a2.download.pdb_information](script/a2.download.pdb.information.sh)
 
 (base) dell@dell-PowerEdge-R750xa:~/model/data/b1.pdbs/pdb_information$ cat a2.download.sh
 ```sh
@@ -436,6 +439,7 @@ MGSSHHHHHHSSGLVPRGSHMASMTGGQQMGRGSEFELRRQALEYASEMNGMEIAIIGMAVRFPQSRTLHEFWHNIVQGK
 ## 4. Transfer PDB into png
 
 Unzip pdb files.
+[a3.gunzip.pdb.file](script/a3.gunzip.pdb.file.sh)
 
 ```sh
 
@@ -466,6 +470,7 @@ conda activate pymol_env
 conda activate /home/dell/.conda/envs/pymol_env
 
 ```
+[a4.pdb.image](script/a4.pdb.image.py)  
 ```py
 import os
 import glob
@@ -542,6 +547,7 @@ with pymol2.PyMOL() as pymol:
 
 ```
 多进程
+[a5.pdb.image.multi](script/a5.pdb.image.multi.py)
 ```sh
 conda activate pymol_env 
 #or
@@ -675,7 +681,7 @@ MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRVKHLKTEAEMKASEDLKKHGVTVLTALGAILKKK
 ```sh
 conda activate pymol_env
 pip install biopython
-
+[a6.generate.json](script/a6.generate.jsonl.py)
 ```
 ```py
 import os
