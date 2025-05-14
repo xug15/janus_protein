@@ -896,8 +896,8 @@ tokenizer = AutoTokenizer.from_pretrained("/home/dell/model/train_deepseek_janus
 ```
 
 
-用于权重融合 + 保存为标准结
-请将以下内容保存为 merge_lora_to_hf.py，并运行它：
+# 用于权重融合 + 保存为标准结 hugging face model 标准
+## 请将以下内容保存为 merge_lora_to_hf.py，并运行它：
 ```py
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
