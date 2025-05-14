@@ -837,15 +837,130 @@ swift infer \
    --result_path result_origin.jsonl
 
 ```
+训练完成后的结构
+```txt
+[INFO:swift] last_model_checkpoint: /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69910
+[INFO:swift] best_model_checkpoint: /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69500
+[INFO:swift] images_dir: /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/images
+[INFO:swift] End time of running main: 2025-05-14 04:47:04.185887
+```
+
+# 训练完成后将训练好的参数导入模型中
+##  步骤 1：合并 LoRA 权重到原模型（权重融合）
+使用 peft 提供的 merge_and_unload() 函数，将微调得到的 LoRA 权重合并回主模型中：  
+```py
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+
+# 原始预训练模型路径
+base_model_path = "/home/dell/model/deepseek-janus-pro-7b"
+
+# LoRA 微调后 checkpoint 路径（best_model_checkpoint）
+lora_checkpoint_path = "/home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69500"
+
+# 加载基础模型（bfloat16）
+model = AutoModelForCausalLM.from_pretrained(base_model_path, torch_dtype="auto", device_map="auto")
+
+# 加载 LoRA 权重
+model = PeftModel.from_pretrained(model, lora_checkpoint_path)
+
+# 将 LoRA 权重合并到基础模型
+model = model.merge_and_unload()
+
+# 保存融合后的模型
+merged_model_path = "/home/dell/model/train_deepseek_janus_7b_pro/merged"
+model.save_pretrained(merged_model_path)
+
+# 可选：保存 tokenizer
+tokenizer = AutoTokenizer.from_pretrained(base_model_path)
+tokenizer.save_pretrained(merged_model_path)
+
+```
+输出结果
+最终模型会保存在：
+```sh
+/home/dell/model/train_deepseek_janus_7b_pro/merged
+```
+该目录包含：
+
+* pytorch_model.bin：合并后的完整模型权重
+* config.json：模型配置
+* tokenizer.json, vocab.json, 等（用于推理）
+
+推理时加载示例
+```py
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model = AutoModelForCausalLM.from_pretrained("/home/dell/model/train_deepseek_janus_7b_pro/merged", device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained("/home/dell/model/train_deepseek_janus_7b_pro/merged")
+```
 
 
+用于权重融合 + 保存为标准结
+请将以下内容保存为 merge_lora_to_hf.py，并运行它：
+```py
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
 
+# === 路径设置 ===
+base_model_path = "/home/dell/model/deepseek-janus-pro-7b"
+lora_checkpoint_path = "/home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69500"
+merged_save_path = "/home/dell/model/train_deepseek_janus_7b_pro/merged_hf_format"
 
+# === 加载模型 ===
+print("Loading base model...")
+base_model = AutoModelForCausalLM.from_pretrained(
+    base_model_path,
+    torch_dtype=torch.bfloat16,
+    device_map="auto"
+)
 
+print("Merging LoRA weights...")
+model = PeftModel.from_pretrained(base_model, lora_checkpoint_path)
+model = model.merge_and_unload()  # 融合 LoRA 权重
 
+# === 保存合并后的模型 ===
+print(f"Saving merged model to {merged_save_path} ...")
+model.save_pretrained(merged_save_path)
 
+# === 保存 tokenizer ===
+print("Saving tokenizer...")
+tokenizer = AutoTokenizer.from_pretrained(base_model_path)
+tokenizer.save_pretrained(merged_save_path)
 
+print("✅ Model export complete in HuggingFace format!")
 
+```
 
+ 运行方式
+```sh
+cd /home/dell/model/script/Translatomer-main  # 或任意你存脚本的地方
+python merge_lora_to_hf.py
+```
 
+后续使用方式
+现在，你可以像加载普通 HuggingFace 模型一样使用它：
+```py
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
+model = AutoModelForCausalLM.from_pretrained("/home/dell/model/train_deepseek_janus_7b_pro/merged_hf_format", device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained("/home/dell/model/train_deepseek_janus_7b_pro/merged_hf_format")
+```
+
+上传 HuggingFace Hub（可选）
+如果你登录了 Hugging Face 账号，可执行：
+```py
+pip install huggingface_hub
+
+huggingface-cli login
+
+# 初始化 Git 仓库
+cd /home/dell/model/train_deepseek_janus_7b_pro/merged_hf_format
+git init
+git lfs install
+git remote add origin https://huggingface.co/your-username/your-model-name
+git add .
+git commit -m "Upload fine-tuned DeepSeek Janus Pro 7B"
+git push origin main
+```
