@@ -685,6 +685,10 @@ pip install biopython
 ```
 
 [a6.generate.json](script/a6.generate.jsonl.py)
+```sh
+ conda activate pymol_env
+```
+
 
 ```py
 import os
@@ -753,7 +757,7 @@ with open(output_jsonl, "w", encoding="utf-8") as fout:
         count = len(peptide_info)
         #print(peptide_info)
         instruction = (
-            f"这个是蛋白的结构从前,后,左,右,上,下,6个角度观察结构的图像,请根据该蛋白结构6个角度的图片,预测该蛋白的整体功能。\n"
+            f"这个是生物分子的结构从前,后,左,右,上,下,6个角度观察结构的图像,请根据该结构6个角度的图片,预测该分子的整体功能。\n"
             f"目标共有{count}条链，"
         )
         for i, pep in enumerate(peptide_info):
@@ -847,33 +851,47 @@ swift infer \
 [INFO:swift] images_dir: /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/images
 [INFO:swift] End time of running main: 2025-05-14 04:47:04.185887
 ```
+
+# 修改后的dataset.
+
 ```sh
 CUDA_VISIBLE_DEVICES=1,2 \
 swift sft \
     --model /home/dell/model/deepseek-janus-pro-7b \
     --model_type deepseek_janus_pro \
-    --dataset /home/dell/model/data/b5.json/train_entitygroup_level.jsonl \
+    --dataset /home/dell/model/data/b5.pdb_all.jsonl/deepseek_janus_training_data.jsonl \
     --train_type lora \
     --torch_dtype bfloat16 \
-    --num_train_epochs 5 \
+    --num_train_epochs 1 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
     --learning_rate 1e-5 \
     --lora_rank 8 \
     --lora_alpha 32 \
     --target_modules all-linear \
-    --freeze_vit true \
+    --freeze_vit false \
     --gradient_accumulation_steps 16 \
     --eval_steps 100 \
     --save_steps 100 \
-    --save_total_limit 2 \
+    --save_total_limit 20 \
     --logging_steps 5 \
-    --max_length 2048 \
-    --output_dir /home/dell/model/train_deepseek_janus_7b_pro \
+    --max_length 4048 \
+    --output_dir /home/dell/model/train_deepseek_janus_7b_pro_v2 \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
     --dataset_num_proc 4 \
-    --resume_from_checkpoint /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69500
+    --ckpt_dir /home/dell/model/train_deepseek_janus_7b_pro/v17-20250423-131047/checkpoint-69500  
+
+
 ```
+
+
+
+
+
+
+
+
+
 
 
